@@ -1,0 +1,148 @@
+<style>
+        body {
+            background:#E8E8E8;
+        }
+       .iconfonts {
+            font-family: 'Bangers', cursive;
+            font-size:25px;
+        }
+        ul li a strong {
+            transition: color 0, 8s;
+        }
+
+        ul li a strong:hover {
+            color: gray;
+        }
+
+        div.bg-light {
+            border-bottom: 1px solid #A0A0A0;
+        }
+
+        .margin-top {
+            margin-top: 1px;
+            margin-right: 2px;
+        }
+
+        .margin-top-navbar {
+            margin-top: 66px;
+        }
+        .index1 {
+            z-index: 2;
+        }
+
+        .index2 {
+            z-index: 1;
+        }
+
+        .navbar-color {
+            background-color:#E0E0E0;
+        }
+        .navbar-border-color{
+            border-bottom:1px solid #383838;
+        }
+    </style>
+     {% if session["en"] == True and session["tr"] == False %}
+           <nav>
+        <div class="navbar navbar-border-nav bg-light navbar-expand-sm fixed-top navbar-light mb-2 index1">
+            <div class="container">
+                <a href="/" class="navbar-brand ml-2"><span class="iconfonts">COMICS Man</span></a>
+                <button class="navbar-toggler index1" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarCollapse" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        {% if session["logged_in"] %}
+                        <li class="navbar-item active"><a href="/logout" class="nav-link" alt = "Comicsman-Logout"><strong>Logout</strong></a></li>
+                        {% if session["moderators"] != True %}
+                        <li class="navbar-item active"><a href="/mylist" class="nav-link" alt = "Comicsman-MyList"><strong>My List</strong></a></li> 
+                        <li class="navbar-item active"><a href="/mylibrary" class="nav-link" alt = "Comicsman-MyLibrary"><strong>My Library</strong></a></li>
+                        {% endif %}
+                        {% if session["moderators"] %}
+                        <li class="navbar-item active"><a href="/adminpanel/33CDba2XM" class="nav-link" alt = "Comicsman-Admin"><strong>Admin Panel</strong></a></li>
+                        {% else %}
+                        <li class="navbar-item active"><a href="/profile/{{session['id']}}" class="nav-link" alt = "Comicsman-Profile"><strong>{{session["username"]}}</strong></a></li>
+                        {% endif %}      
+                        {% else %}
+                        <li class="navbar-item active"><a href="/login" class="nav-link" alt = "Comicsman-Login"><strong>Login</strong></a></li>
+                        <li class="navbar-item active"><a href="/register" class="nav-link" alt = "Comicsman-Register"><strong>Register</strong></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar navbar-color navbar-border-color navbar-expand-sm fixed-top navbar-light margin-top-navbar index2">
+            <div class="container">
+                <button class="navbar-toggler index2" type="button" data-toggle="collapse" data-target="#navbarCollapse2">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarCollapse2" class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="navbar-item active"><a href="/comics" class="nav-link" alt = "Comicsman-Comics"><strong>Comics</strong></a></li>
+                        <li class="navbar-item active"><a href="/cate-marvel" class="nav-link" alt = "Comicsman-Marvel"><strong>Marvel</strong></a></li>
+                        <li class="navbar-item active"><a href="/cate-dc" class="nav-link" alt = "Comicsman-DC"><strong>DC</strong></a></li>
+                        <li class="navbar-item active"><a href="/cate-sw" class="nav-link" alt = "Comicsman-Star Wars"><strong>Star Wars</strong></a></li>
+                        <li class="navbar-item active"><a href="/cate-lol" class="nav-link" alt = "Comicsman-League Of Legends"><strong>League Of Legends</strong></a></li>
+                        <li class="navbar-item active"><a href="/cate-oth" class="nav-link" alt = "Comicsman-Other"><strong>Other</strong></a></li>
+                    </ul>
+                    <ul class = "navbar-nav ml-auto">
+                        <li class="navbar-item active"><a href="/tr" class="nav-link"><img src="{{ url_for('static', filename='yuklemeler/tr.png' ) }}" alt="comicsman-turkish-language" width = "30px" height = "20px"></a></li>
+                        <li class="navbar-item active"><a href="/en" class="nav-link"><img src="{{ url_for('static', filename='yuklemeler/en.png' ) }}" alt="comicsman-english-language" width = "30px" height = "20px"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav> 
+    {% else %}
+    <nav>
+        <div class="navbar navbar-border-nav bg-light navbar-expand-sm fixed-top navbar-light mb-2 index1">
+            <div class="container">
+                <a href="/" class="navbar-brand ml-2"><span class="iconfonts">COMICS Man</span></a>
+                <button class="navbar-toggler index1" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarCollapse" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        {% if session["logged_in"] %}
+                        <li class="navbar-item active"><a href="/logout" class="nav-link" alt = "Comicsman-Logout"><strong>Çıkış</strong></a></li>
+                        {% if session["moderators"] != True %}
+                        <li class="navbar-item active"><a href="/mylist" class="nav-link" alt = "Comicsman-MyList"><strong>Listem</strong></a></li> 
+                        <li class="navbar-item active"><a href="/mylibrary" class="nav-link" alt = "Comicsman-MyLibrary"><strong>Kütüphanem</strong></a></li>
+                        {% endif %}
+                        {% if session["moderators"] %}
+                        <li class="navbar-item active"><a href="/adminpanel/33CDba2XM" class="nav-link" alt = "Comicsman-Admin"><strong>Yönetici Paneli</strong></a></li>
+                        {% else %}
+                        <li class="navbar-item active"><a href="/profile/{{session['id']}}" class="nav-link" alt = "Comicsman-Profile"><strong>{{session["username"]}}</strong></a></li>
+                        {% endif %}      
+                        {% else %}
+                        <li class="navbar-item active"><a href="/login" class="nav-link" alt = "Comicsman-Login"><strong>Giriş</strong></a></li>
+                        <li class="navbar-item active"><a href="/register" class="nav-link" alt = "Comicsman-Register"><strong>Kayıt Ol</strong></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar navbar-color navbar-border-color navbar-expand-sm fixed-top navbar-light margin-top-navbar index2">
+            <div class="container">
+                <button class="navbar-toggler index2" type="button" data-toggle="collapse" data-target="#navbarCollapse2">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarCollapse2" class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="navbar-item active"><a href="/comics" class="nav-link" alt = "Comicsman-Comics"><strong>Çizgi Romanlar</strong></a></li>
+                        <li class="navbar-item active"><a href="/cate-marvel" class="nav-link" alt = "Comicsman-Marvel"><strong>Marvel</strong></a></li>
+                        <li class="navbar-item active"><a href="/cate-dc" class="nav-link" alt = "Comicsman-DC"><strong>DC</strong></a></li>
+                        <li class="navbar-item active"><a href="/cate-sw" class="nav-link" alt = "Comicsman-Star Wars"><strong>Star Wars</strong></a></li>
+                        <li class="navbar-item active"><a href="/cate-lol" class="nav-link" alt = "Comicsman-League Of Legends"><strong>League Of Legends</strong></a></li>
+                        <li class="navbar-item active"><a href="/cate-oth" class="nav-link" alt = "Comicsman-Other"><strong>Diğer</strong></a></li>
+                    </ul>
+                    <ul class = "navbar-nav ml-auto">
+                        <li class="navbar-item active"><a href="/tr" class="nav-link"><img src="{{ url_for('static', filename='yuklemeler/tr.png' ) }}" alt="comicsman-turkish-language" width = "30px" height = "20px"></a></li>
+                        <li class="navbar-item active"><a href="/en" class="nav-link"><img src="{{ url_for('static', filename='yuklemeler/en.png' ) }}" alt="comicsman-english-language" width = "30px" height = "20px"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% endif %}

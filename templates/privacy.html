@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+        body {
+            background: #E8E8E8;
+        }
+
+        .margin-top-jumbo {
+            margin-top: 175px;
+        }
+        .border-div{
+            border:1px solid black;
+        }
+    </style>
+<div class="jumbotron margin-top-jumbo container navbar-color border-div">
+{% if session["en"] == True and session["tr"] == False %}
+<h2 align=center>PRIVACY</h2>
+        <hr>
+        <p style = "font-weight:bold;">COMICS MAN is not responsible for the comics shared by users. All responsibility belongs to the person who shares it.</p>
+        <hr>
+        <h3>Log Files</h3>
+        <p>
+            As in many standard web server COMICS MAN it 'holds the record for statistical purposes LOG file. 
+            These files; ip address, your internet service provider, features of your browser, your operating 
+            system and your site includes as standard input-output page information. 
+            LOG file will not be used except for statistical purposes and does not violate your privacy. 
+            Your IP address and other information are not associated with your personal information.
+        </p>
+        <hr>
+        <h3>Ads</h3>
+        <p>
+            We publish their ads on our site outside companies (Google, etc.). 
+            These ads cookies (cookies) and may include cookies that company 
+            information can be collected by us this information and it is not possible for us to reach. 
+            We are Google Adsense, and so on. 
+            We work with companies please read the relevant pages from their confidentiality agreement.
+        </p>
+        <hr>
+        <h3>Cookies</h3>
+        <p>
+            "Cookie - Cookie" word web page server of a small text that you insert the hard drive of your computer (.txt) is used to identify the file. 
+            In some parts of our site, cookies may be used to provide user convenience. 
+            Also available through advertisements contained on the site may be using cookies and web beacons to 
+            collect advertising data. This is completely performed, with your permission, 
+            your request changing the settings in your web browser to prevent it, including possibl
+        </p>
+        <hr>
+        <h3>External</h3>
+        <p>
+            I COMICS MAN, provides links to different web addresses of the pages. 
+            He gave COMICS MAN link, banner promotion of his site is not responsible for the content or privacy principles. 
+            Wherein said connection making process, legal "referencing" is considered to be
+        </p>
+        <hr>
+        <h3>Contact</h3>
+        <p>
+            I COMICS MAN regarding the privacy policy applied on the site; Any questions, comments, 
+            and communicate your thoughts to us comicstheman@gmail.com address. 
+        </p>
+        <hr>
+        <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/ins.png') }}" alt = "comicsman-instagram-icon" width="35px"></a>
+        <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/face.png') }}" alt = "comicsman-facebook-icon" width="35px"></a>
+        <a href="#"><img id="twitid" src="{{ url_for('static', filename='yuklemeler/twit.png') }}" alt = "comicsman-twitter-icon"width="35px"></a>
+{% else %}
+<h2 align=center>Gizlilik</h2>
+        <hr>
+        <p style = "font-weight:bold;">Kullanıcılar tarafından paylaşılan çizgi romanlardan COMICS MAN sorumlu değildir.Tüm sorumluluk paylaşan kişiye aitdir.</p>
+        <hr>
+        <h3>Kayıt Dosyaları</h3>
+        <p>
+            Birçok standart web sunucusunda olduğu gibi COMICS MAN‘ da istatistiksel amaçlı LOG dosyaları kaydı
+            tutmaktadır. Bu dosyalar; ip adresiniz, internet servis sağlayıcınız, tarayıcınızın özellikleri, işletim
+            sisteminiz ve siteye giriş-çıkış sayfalarınız gibi standart bilgileri içermektedir. LOG dosyaları kesinlikle
+            istatistiksel amaçlar dışında kullanılmamakta ve mahremiyetinizi ihlal etmemektedir. IP adresiniz ve diğer
+            bilgiler, şahsi bilgileriniz ile ilişkilendirilmemektedir.
+        </p>
+        <hr>
+        <h3>Reklamlar</h3>
+        <p>
+            Sitemizde dışarıdan şirketlerin reklamlarını yayınlamaktayız (Google, vs.). Bu reklamlar çerez (cookıes)
+            içerebilir ve bu şirketler tarafından çerez bilgileri toplanabilir ve bizim bu bilgiye ulaşmamız mümkün
+            değildir. Biz Google Adsense, vb. şirketler ile çalışmaktayız lütfen onların ilgili sayfalarından gizlilik
+            sözleşmelerini okuyunuz.
+        </p>
+        <hr>
+        <h3>Çerezler (COOKİES)</h3>
+        <p>
+            “Cookie – Çerez” kelimesi web sayfası sunucusunun sizin bilgisayarınızın hard diskine yerleştirdiği ufak
+            bir metin(.txt) dosyasını tanımlamak için kullanılmaktadır. Sitemizin bazı bölümlerinde kullanıcı kolaylığı
+            sağlamak için çerez kullanılıyor olabilir. Ayrıca sitede mevcut bulunan reklamlar aracılığıyla, reklam
+            verilerinin toplanması için cookie ve web beacon kullanılıyor olabilir. Bu tamamen sizin izninizle
+            gerçekleşiyor olup, isteğiniz dâhilinde internet tarayıcınızın ayarlarını değiştirerek bunu engellemeniz
+            mümkündür
+        </p>
+        <hr>
+        <h3>Dış Bağlantılar</h3>
+        <p>
+            COMICS MAN, sayfalarından farklı internet adreslerine bağlantı vermektedir. COMICS MAN link verdiği, banner
+            tanıtımını yaptığı sitelerin içeriklerinden veya gizlilik prensiplerinden sorumlu değildir. Burada bahsedilen
+            bağlantı verme işlemi, hukuki olarak “atıfta bulunma” olarak değerlendirilmektedir
+        </p>
+        <hr>
+        <h3>İletişim</h3>
+        <p>
+            COMICS MAN sitesinde uygulanan gizlilik politikası ile ilgili; her türlü soru, görüş ve düşüncelerinizi
+            bize comicstheman@gmail.com adresinden iletebilirsiniz.
+        </p>
+        <hr>
+        <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/ins.png') }}" alt = "comicsman-instagram-icon" width="35px"></a>
+        <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/face.png') }}" alt = "comicsman-facebook-icon" width="35px"></a>
+        <a href="#"><img id="twitid" src="{{ url_for('static', filename='yuklemeler/twit.png') }}" alt = "comicsman-twitter-icon"width="35px"></a>
+{% endif %}
+</div>
+
+
+{% endblock body %}

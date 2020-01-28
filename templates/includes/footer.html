@@ -1,0 +1,165 @@
+
+{% block body %}
+<style>
+        body {
+            background: #E8E8E8;
+        }
+        .iconfontsfooter {
+            font-family: 'Bangers', cursive;
+            font-size:20px;
+        }
+        ul li a strong {
+            transition: color 0, 8s;
+        }
+
+        ul li a strong:hover {
+            color: gray;
+        }
+
+        div.bg-light {
+            border-bottom: 1px solid #A0A0A0;
+        }
+
+        .margin-top {
+            margin-top: 1px;
+            margin-right: 2px;
+        }
+
+        .margin-top-navbar {
+            margin-top: 56px;
+        }
+
+        .index1 {
+            z-index: 2;
+        }
+
+        .index2 {
+            z-index: 1;
+        }
+
+        .navbar-color {
+            background-color: #E0E0E0;
+        }
+
+        .navbar-border-color {
+            border-bottom: 1px solid #383838;
+        }
+
+        footer {
+            left: 0px;
+            width: 100%;
+            background-color: #E0E0E0;
+            border-top: 1px solid #383838;
+            margin-top:650px;
+        }
+
+        .margin-left {
+            margin-left: 200px;
+        }
+
+        .color {
+            background-color: #282828;
+        }
+
+        .height {
+            height: 50px;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: grey;
+            text-decoration: none;
+        }
+
+        a:focus {
+            color: black;
+        }
+
+        .footer-info:hover {
+            color: gray;
+            cursor: pointer;
+        }
+        .border-top {
+            border-bottom: 1px solid #383838;
+        }
+        .ml-left{
+            margin-left:100px;
+        }
+    </style>
+    <footer class="page-footer navbar-color script-footer" id = "footer">
+        <div class="footer-copyright text-center border-top height bg-light">
+            <div class="text-center mt-2">
+                <ul class="list-unstyled d-inline" style = "margin-left:60px;">
+                    <li class="d-inline"><a href="#"><img src="{{ url_for('static', filename='yuklemeler/face.png') }}" alt="comicsman-facebook-icon" width="25px" class="mr-2 ml-2"></a></li>
+                    <li class="d-inline"><a href="#"><img src="{{ url_for('static', filename='yuklemeler/ins.png') }}" alt="comicsman-instagram-icon" width="25px" class="ml-1"></a></li>
+                    <li class="d-inline"><a href="#"><img src="{{ url_for('static', filename='yuklemeler/twit.png') }}" alt="comicsman-twitter-icon" width="25px" class="ml-3"></a></li>
+                    <li class="d-inline"><a href="#"><img src="{{ url_for('static', filename='yuklemeler/steam.png') }}" alt="comicsman-steam-icon" width="25px" class="ml-3"></a></li>
+                    <li class="d-inline"><a href="#"><img src="{{ url_for('static', filename='yuklemeler/discord.png') }}" alt="comicsman-discord-icon" width="25px" class="ml-3 mr-5"></a></li>
+                </ul>
+            </div>
+        </div>
+        {% if session["en"] == True and session["tr"] == False %}
+        <div class="bg-light">
+        <div class="container text-center">
+            <div class="row mb-4">
+                <div class="col-md-3 mb-md-0 mt-3">
+                    <h5 class="text-uppercase ml-5 footer-info"><a href="/about" alt = "Comicsman-About">About Us</a></h5>
+                    <p class="ml-5"><span class="iconfontsfooter text-black">COMICS MAN</span> 's History requesting to see the Curious</p>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col-md-3 mb-md-0 mt-3">
+                    <h5 class="text-uppercase ml-5 footer-info"><a href="/contact" alt = "Comicsman-Contact">Contact</a></h5>
+                    <p class="ml-5"> Is this something was inserted into your mind immediately made contact!</p>
+                    <a href="#" class="btn btn-secondary ml-5">Contact Us!</a>
+                </div>
+                <div class="col-md-3 mb-md-0 mt-3">
+                    <h5 class="text-uppercase ml-5 footer-info"><a href="/privacy" alt = "Comicsman-Privacy">Privacy</a></h5>
+                    <p class="ml-5">If you think your data is shared, you can look here.</p>
+                </div>
+                <div class="col-md-3 mb-md-0 mt-3">
+                    <h5 class="text-uppercase ml-5 footer-info"><a href="/rules" alt = "Comicsman-Rules">Rules</a></h5>
+                    <p class="ml-5">Hey! Let's have a look at some of the things we need to pay attention to.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="footer-copyright text-center color py-1">
+            <h5 class="mt-2"><span class="iconfonts text-white">COMICS MAN</span></h5>
+            <p class="text-white font-size">COMICS MAN © 2019 - All Rights Reserved.</p>
+        </div>
+        {% else %}
+        <div class="bg-light">
+        <div class="container text-center">
+            <div class="row mb-4">
+                <div class="col-md-3 mb-md-0 mt-3">
+                    <h5 class="text-uppercase ml-5 footer-info"><a href="/about" alt = "Comicsman-About">Hakkımızda</a></h5>
+                    <p class="ml-5"><span class="iconfontsfooter text-black">COMICS MAN</span>'ın Tarihçesini Görmek İsteyen Meraklılara</p>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col-md-3 mb-md-0 mt-3">
+                    <h5 class="text-uppercase ml-5 footer-info"><a href="/contact" alt = "Comicsman-Contact">İletişim</a></h5>
+                    <p class="ml-5">Aklına birşey mi takıldı hemen iletişime geç!</p>
+                    <a href="/contact" class="btn btn-secondary ml-5">İletişime Geç!</a>
+                </div>
+                <div class="col-md-3 mb-md-0 mt-3">
+                    <h5 class="text-uppercase ml-5 footer-info"><a href="/privacy" alt = "Comicsman-Privacy">Gizlilik</a></h5>
+                    <p class="ml-5">Verilerinin paylaşıldığını düşünüyorsan buraya bakabilirsiniz.</p>
+                </div>
+                <div class="col-md-3 mb-md-0 mt-3">
+                    <h5 class="text-uppercase ml-5 footer-info"><a href="/rules" alt = "Comicsman-Rules">Kurallar</a></h5>
+                    <p class="ml-5">Hey! Bazı dikkat etmemiz gereken şeyler var gel bi bakalım.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="footer-copyright text-center color py-1">
+            <h5 class="mt-2"><span class="iconfonts text-white">COMICS MAN</span></h5>
+            <p class="text-white font-size">COMICS MAN © 2019 - Tüm Hakları Saklıdır.</p>
+        </div>
+        {% endif %}       
+    </footer>
+{% endblock body %}

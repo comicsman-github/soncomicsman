@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% from "includes/formhelpers.html" import render_field %}
+{% block body %}
+<style>
+        body {
+            background: #E8E8E8;
+        }
+        .margin-top-form {
+            margin-top: 160px;
+        }
+
+        .margin-left-form {
+            margin-left: 350px;
+        }
+
+        .formkayit {
+            width: 500px;
+        }
+
+        .margin-top-button {
+            margin-top: 150px;
+        }
+        .width{
+			width:550px;
+		}
+		@media screen and (max-width:574px){
+			.width{
+				width:400px;
+			}
+		}
+    </style>
+<div class="container bg-light width margin-top-form rounded pt-2">
+        {% if session["en"] == True and session["tr"] == False %}
+        <h3 class="iconfonts text-center">COMICS MAN</h3>
+        <hr>
+        <form method = "post">
+        <div class="form-group">
+            {{ render_field(form.username,class = "form-control") }}	
+        </div>
+
+        <div class="form-group">
+            {{ render_field(form.password,class = "form-control") }}	
+        </div>
+        <button class="btn btn-danger form-control margin-top-button mb-3" alt = "Comicsman-AdminPanel-Login">Login</button>
+        </form>
+        {% else %}
+        <h3 class="iconfonts text-center">COMICS MAN</h3>
+        <hr>
+        <form method = "post">
+        <div class="form-group">
+            {{ render_field(form.username,class = "form-control") }}	
+        </div>
+
+        <div class="form-group">
+            {{ render_field(form.password,class = "form-control") }}	
+        </div>
+        <button class="btn btn-danger form-control margin-top-button mb-3" alt = "Comicsman-AdminPanel-Login">Giriş Yap</button>
+        </form>
+        {% endif %}
+    </div>
+{% endblock body %}

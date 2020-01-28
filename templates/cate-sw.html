@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block body %}
+<style>
+        .mt-top-button {
+            margin-top: 145px;
+
+        }
+        .width{
+            width:1108px;
+        }
+        .margin-top-allcr{
+            margin-top:145px;
+        }
+        @media screen and (max-width:574px){
+            .width{
+                width:515px;
+            }
+        }
+        @media screen and (max-width:350px){
+            img{
+                width:120px;
+            }
+        }
+    </style>
+     
+    <div class="container margin-top-allcr">
+    
+    <div class= "mt-top-button bg-light rounded mt-top2">
+            <div class="row p-2">
+            {% if session["en"] == True and session["tr"] == False %}
+            <img src="{{ url_for('static', filename='yuklemeler/sw.png') }}" alt = "comicsman-starwars-icon" width="80px" class = "img-fluid ml-4"><h3 class = "ml-3 mt-2">Comics</h3>
+            {% else %}
+            <img src="{{ url_for('static', filename='yuklemeler/sw.png') }}" alt = "comicsman-starwars-icon" width="80px" class = "img-fluid ml-4"><h3 class = "ml-3 mt-2">Çizgi Romanları</h3>
+            {% endif %}
+            </div>
+    </div>
+    {% if session["en"] == True and session["tr"] == False %}
+    {% if comics %}
+    <div class="row">
+    {% for comic in comics %}
+            <div class="col-lg-4 col-md-8 col-sm-12 mt-3">
+                <div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <img src="{{ url_for('static', filename='yuklemeler/' + comic.imgname ) }}" alt = "comicsman-comic-image" width="300px" class="card-img-left img-fluid float-left mr-2" style="height:350px;margin-bottom:10px;">
+                            <h4 class = "card-title text-uppercase textborder">{{comic.title}}</h4>
+                            <hr>
+                            <p class = "card-text textborder">{{ comic.content }}</p>
+                            <p><img src="{{ url_for('static', filename='yuklemeler/views.png') }}" style = "max-width:25px" width = "25px" alt = "comicsman-views-icon"><strong class = "ml-2 mt-2">{{comic.views}}</strong></p>
+                            <a href = "/comic/{{comic.id}}" class = "btn btn-primary btn-block mt-3 float-left"  alt = "Comicsman-Comic">Git</a>
+                        </div>                    
+                        <div class="card-footer">
+                            <p class="text-left ml-2  mt-2 underline"><a href="/profile/{{comic.authorid}}" class = "text-primary">{{comic.author}}</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+             
+    {% endfor %}         
+    </div>
+    {% else %}
+    <div class="alert alert-warning">
+        Comics Not Found
+    </div>
+    {% endif %}
+    {% else %}
+    {% if comics %}
+    <div class="row">
+    {% for comic in comics %}
+            <div class="col-lg-4 col-md-8 col-sm-12 mt-3">
+                <div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <img src="{{ url_for('static', filename='yuklemeler/' + comic.imgname ) }}" alt = "comicsman-comic-image" width="300px" class="card-img-left img-fluid float-left mr-2" style="height:350px;margin-bottom:10px;">
+                            <h4 class = "card-title text-uppercase textborder">{{comic.title}}</h4>
+                            <hr>
+                            <p class = "card-text textborder">{{ comic.content }}</p>
+                            <p><img src="{{ url_for('static', filename='yuklemeler/views.png') }}" style = "max-width:25px" width = "25px" alt = "comicsman-views-icon"><strong class = "ml-2 mt-2">{{comic.views}}</strong></p>
+                            <a href = "/comic/{{comic.id}}" class = "btn btn-primary btn-block mt-3 float-left"  alt = "Comicsman-Comic">Git</a>
+                        </div>                    
+                        <div class="card-footer">
+                            <p class="text-left ml-2  mt-2 underline"><a href="/profile/{{comic.authorid}}" class = "text-primary">{{comic.author}}</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+             
+    {% endfor %}         
+    </div>
+    {% else %}
+    <div class="alert alert-warning">
+        Çizgi Roman Bulunamadı.
+    </div>
+    {% endif %}
+    {% endif %}
+    </div>
+{% endblock body %}

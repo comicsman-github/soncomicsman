@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+<style>
+        body {
+            background:#E8E8E8;
+        }
+        .margin-top-allcr {
+            margin-top: 155px;
+            max-height: 300px;
+        }
+    </style>
+
+
+    <div class="container margin-top-allcr">
+        <div class="row">
+        {% if comics %}
+        {% for comic in comics %}
+            <div class="col-lg-4 col-md-8 col-sm-12 mt-3">
+                <div class="card">
+                    <div class="card-body clearfix">
+                        <img src="aaa.JPG" alt="" width="180px" class="card-img-left img-fluid float-left mr-2">
+                        <h4 class = "card-title text-uppercase">{{comic.title}}</h4>
+                        <p class = "card-text">{{comic.content }}</p>
+                        <a href = "/comic/{{comic.id}}" class = "btn btn-primary" alt = "Comicsman-Comic">Git</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+            <div class="alert alert-warning">
+                Bu kategoriye ait çizgi roman bulunamamıştır.
+            </div>
+        {% endif %}
+            
+    
+        </div>
+    </div>
+{% endblock body %}
+   

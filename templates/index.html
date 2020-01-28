@@ -1,0 +1,227 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+        .margin-top-main {
+            margin-top: 180px;
+        }
+        .cursor-pointer{
+            cursor:pointer;
+        }
+        a:link {text-decoration: none;}
+        a:visited {text-decoration: none;}
+        a:hover {text-decoration: none;}
+        a:active {text-decoration: none;}
+        @media screen and (max-width:574px){
+            .img-thumbnail{
+                width:500px;
+            }
+        }
+        .underline:hover{
+            text-decoration:underline;
+        }
+        .sticky{
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+        }
+    </style>
+<main>
+        
+
+    <div class="container margin-top-main">
+    {% if session["en"] == True and session["tr"] == False %}
+    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>Search</h5>
+                        </div>
+                        <form action = "/search" method = "post">
+                        <div class="card-body">
+                            <div class="input-group">
+                            
+                                <input type="text" name = "keyword" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </span>
+                                
+                            </div>
+                        </div>
+                        </form>
+                </div>
+        <div class="row">
+        {% if comics %}
+        <div class="col-lg-8 col-md-8 col-sm-12">
+        {% for comic in comics %}
+                <div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <img src="{{ url_for('static', filename='yuklemeler/' + comic.imgname ) }}" class="card-img-left img-thumbnail float-left mr-2" alt = "comicsman-comic-image" width="350px" style="height:500px;">
+                            <h3 class="card-title text-uppercase">{{comic.title}}</h3>
+                            <hr>
+                            <p class="card-text">
+                               {{comic.content}}
+                            </p>
+                            <p><strong>Brand : </strong>{{comic.brand}}</p>
+                            <p><strong>Type : </strong>{{comic.type}}</p>
+                            <p><strong>Character : </strong>{{comic.characters}}</p>
+                            <p><img src="{{ url_for('static', filename='yuklemeler/views.png') }}" alt = "comicsman-views-icon" width = "25px" alt=""><strong class = "ml-2 mt-2">{{comic.views}}</strong></p>
+                            <a href = "/comic/{{comic.id}}" class="btn btn-primary float-left w-50" style = "max-width:300px" alt = "Comicsman-Update">Go</a>
+                        </div>                    
+                        <div class="card-footer">
+                            <p class="text-left ml-2  mt-2 underline"><a href="/profile/{{comic.authorid}}" class = "text-primary">{{comic.author}}</a></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}  
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="mb-4 ml-3" style="max-height:150px;"> 
+                    <div class="card">
+                            <div class="card-header">
+                                <h5>Follow Us!</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="follow-us">
+                                    <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/ins.png') }}" alt = "comicsman-instagram-icon" width="32px"></a>
+                                    <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/face.png') }}" alt = "comicsman-facebook-icon" width="32px"></a>
+                                    <a href="#"><img id="twitid" src="{{ url_for('static', filename='yuklemeler/twit.png') }}" alt = "comicsman-twitter-icon" width="32px"></a>
+                                    <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/steam.png') }}" alt = "comicsman-steam-icon" width="32px"></a>
+                                    <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/discord.png') }}" alt = "comicsman-discord-icon" width="32px"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h5>Donate</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Hey! Only a student who went to high school made this site. If you want to help pay for the rent of our site, you can donate to us.</p>
+                                <a href="/donate" class = "btn btn-success btn-block" alt = "Comicsman-donate">Donate</a>
+                            </div>
+                        </div>   
+                        <!-- Rental Adversiting Space
+                        <div class="card mt-3 p-4 bg-dark text-light" style = "height:366px;">
+                            <h4 class = "text-center">Rental Advertising Space</h4>
+                             <p class = "text-center">You can reach <a href="/contact" alt = "Comicsman-Contact" class = "text-primary">here </a>to rent advertising space.</p>
+                        </div>
+                        -->                      
+                </div>
+        </div>       
+        </div>
+    {% else %}
+            <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>Arama</h5>
+                        </div>
+                        <form action = "/search" method = "post">
+                        <div class="card-body">
+                            <div class="input-group">
+                            
+                                <input type="text" name = "keyword" class="form-control" placeholder="Aramak için...">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </span>
+                                
+                            </div>
+                        </div>
+                        </form>
+                </div>
+        <div class="row">
+        {% if comics %}
+        <div class="col-lg-8 col-md-8 col-sm-12">
+        {% for comic in comics %}
+                <div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <img src="{{ url_for('static', filename='yuklemeler/' + comic.imgname ) }}" class="card-img-left img-thumbnail float-left mr-2" alt="comicsman-comic-image" width="350px" style="height:500px;">
+                            <h3 class="card-title text-uppercase">{{comic.title}}</h3>
+                            <hr>
+                            <p class="card-text textborder">
+                               {{comic.content}}
+                            </p>
+                            <p><strong>Marka : </strong>{{comic.brand}}</p>
+                            <p><strong>Tür : </strong>{{comic.type}}</p>
+                            <p><strong>Ana Karakterler : </strong>{{comic.characters}}</p>
+                            <p><img src="{{ url_for('static', filename='yuklemeler/views.png') }}" width = "25px" alt="comicsman-views-icon"><strong class = "ml-2 mt-2">{{comic.views}}</strong></p>
+                            <a href = "/comic/{{comic.id}}" class="btn btn-primary float-left w-50 mt-3" style = "max-width:300px" alt = "Comicsman-Go">Git</a>
+                        </div>                    
+                        <div class="card-footer">
+                            <p class="text-left ml-2 mt-2 underline"><a href="/profile/{{comic.authorid}}" class = "text-primary">{{comic.author}}</a></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}  
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="mb-4 ml-3" style="max-height:150px"> 
+                    <div class="card">
+                            <div class="card-header">
+                                <h5>Bizi Takip Et!</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="follow-us">
+                                    <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/ins.png') }}" alt = "comicsman-instagram-icon" width="32px"></a>
+                                    <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/face.png') }}" alt = "comicsman-facebook-icon" width="32px"></a>
+                                    <a href="#"><img id="twitid" src="{{ url_for('static', filename='yuklemeler/twit.png') }}" alt = "comicsman-twitter-icon" width="32px"></a>
+                                    <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/steam.png') }}" alt = "comicsman-steam-icon" width="32px"></a>
+                                    <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/discord.png') }}" alt = "comicsman-discord-icon" width="32px"></a>
+                                </div>
+                            </div>
+                        </div>     
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h5>Bağış</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Hey! Sadece liseye giden bir öğrenci bu siteyi yaptı. Sitemizin kirasının ödenmesine yardımcı olmak isterseniz, bize bağışta bulunabilirsiniz.</p>
+                                <a href="/donate" class = "btn btn-success btn-block" alt = "Comicsman-donate">Bağış Yap</a>
+                            </div>
+                        </div>   
+                        <!-- Reklam Alanı
+                        <div class="card mt-3 p-4 bg-dark text-light" style = "height:366px;">
+                            <h4 class = "text-center">Kiralık Reklam Alanı</h4>
+                            <p class = "text-center">Reklam alanı kiralamak için <a alt = "Comicsman-Contact" href="/contact" class = "text-primary">buradan</a> iletişime geçebilirsiniz.</p>
+                        </div>        
+                         -->  
+                </div>
+        </div> 
+        </div>
+    {% endif %}
+    </div>
+    </main>
+    <script>
+        $(document).ready(function() {
+            $("#insid").hover(
+                function() {
+                    $(this).attr("src", "{{ url_for('static', filename='yuklemeler/inshover.png') }}");
+                },
+                function() {
+                    $(this).attr("src", "{{ url_for('static', filename='yuklemeler/ins.png') }}");
+                });
+        });
+        $(document).ready(function() {
+            $("#faceid").hover(
+                function() {
+                    $(this).attr("src", "{{ url_for('static', filename='yuklemeler/facehover.png') }}");
+                },
+                function() {
+                    $(this).attr("src", "{{ url_for('static', filename='yuklemeler/face.png') }}");
+                });
+        });
+        $(document).ready(function() {
+            $("#twitid").hover(
+                function() {
+                    $(this).attr("src", "{{ url_for('static', filename='yuklemeler/twithover.png') }}");
+                },
+                function() {
+                    $(this).attr("src", "{{ url_for('static', filename='yuklemeler/twit.png') }}");
+                });
+        });
+    </script>
+{% endblock body %}

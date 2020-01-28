@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% block body %}
+<style>
+        .margin-top-kont {
+            margin-top: 150px;
+        }
+</style>
+
+<div class="container">
+{% if session["en"] == True and session["tr"] == False %}
+<div class="row margin-top-kont bg-light p-3">
+           <a href="/addcomic" class = "btn btn-danger mb-3">Add Comic Book</a>
+            <div class="col-12">
+                <div class="col-12">
+               {% if comics %}
+               <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Comic Book Name</th>
+                            <th scope="col">Comic Book Type</th>
+                            <th scope="col">Comic Book Company</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       {% for comic in comics %}
+                        <tr>
+                            <th scope = "row"><a href="/comic/{{comic.id}}">{{comic.title}}</a></th>
+                            <td>{{comic.type}}</td>
+                            <td>{{comic.brand}}</td>
+                            <td>{{comic.createddate}}</td>
+                            <td><a href="/edit/{{comic.id}}" class = "btn btn-danger" alt = "Comicsman-Update">Update</a></td>
+                            <td><a href="/delete/{{comic.id}}" class = "btn btn-danger" alt = "Comicsman-Remove">Remove</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+                {% else %}
+                <div class="alert alert-warning">You haven't added any comics yet. </div>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+{% else %}
+<div class="row margin-top-kont bg-light p-3">
+           <a href="/addcomic" class = "btn btn-danger mb-3">Çizgi Roman Ekle</a>
+            <div class="col-12">
+                <div class="col-12">
+               {% if comics %}
+               <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Çizgi Roman Adı</th>
+                            <th scope="col">Çizgi Roman Türü</th>
+                            <th scope="col">Çizgi Roman Firması</th>
+                            <th scope="col">Tarih</th>
+                            <th scope="col">Güncelle</th>
+                            <th scope="col">Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       {% for comic in comics %}
+                        <tr>
+                            <th scope = "row"><a href="/comic/{{comic.id}}">{{comic.title}}</a></th>
+                            <td>{{comic.type}}</td>
+                            <td>{{comic.brand}}</td>
+                            <td>{{comic.createddate}}</td>
+                            <td><a href="/edit/{{comic.id}}" class = "btn btn-danger" alt = "Comicsman-Update">Güncelle</a></td>
+                            <td><a href="/delete/{{comic.id}}" class = "btn btn-danger" alt = "Comicsman-Delete">Sil</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+                {% else %}
+                <div class="alert alert-warning">Henüz bir çizgi roman eklemeişsiniz.</div>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+{% endif %}
+</div>
+
+{% endblock body %}
+

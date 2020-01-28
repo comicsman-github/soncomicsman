@@ -1,0 +1,167 @@
+{% extends "layout.html" %}
+{% block body %}
+<style>
+        .margin-top-profile {
+            margin-top: 175px;
+        }
+
+        .border-title {
+            border-left: 1px solid black;
+        }
+        .back-color{
+            background-color:#DCDCDC;
+        }
+        .margin-top-btn{
+            margin-top:100px;
+        }
+        .textborder{
+            max-height:80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .textborder2{
+            max-width:300px;
+            max-height:25px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .responsive-button{
+            margin-right:34px;
+        }
+        .responsive-button2{
+            width:50%;
+        }
+        .responsive-boyut{
+                margin-bottom:10px;
+                margin-left:5px;
+                height:300px;
+        }
+         @media screen and (max-width:500px){
+            .boyut{
+                width:95%;
+                margin-bottom:10px;
+                margin-left:5px;
+            }
+            .responsive-boyut{
+                width:95%;
+                margin-bottom:10px;
+                height:400px;
+            }
+            .responsive-text{
+                margin-left:10px;
+            }
+            .responsive-button{
+                width:90%;
+                margin-right:15px;
+            }
+            .responsive-button2{
+                width:100%;
+            }
+        }
+</style>
+    <div class="container margin-top-profile">
+    {% if session["en"] == True and session["tr"] == False %}
+    {% if users %}
+            <div class="card">
+                <div class="card-body clearfix">
+                {% if dosya %}
+                <img src="{{ url_for('static', filename='yuklemeler/' + dosya ) }}" alt="comicsman-comic-image" width="180px" class="card-img-left float-left mr-4 boyut" style = "height:180px">
+                {% else %}
+                <img src="{{ url_for('static', filename='yuklemeler/profileicon.png') }}" alt="comicsman-profile-icon" width="180px" class="card-img-left img-fluid float-left mr-4 boyut" style = "height:180px">
+                {% endif %}
+                    <h4 class="card-title mt-1 text-uppercase d-inline textborder responsive-text">{{users.name}}</h4>
+                    <h4 class="card-title mt-1 text-uppercase d-inline textborder responsive-text">{{users.surname}}</h4>
+                    <a href="/report/{{users.id}}"><i class="fas fa-exclamation-triangle text-warning float-right mr-5 mt-2" data-toggle="tooltip" title="Kullanıcıyı Bildir !" data-placement="bottom"></i></a>
+                    <p class="text-muted mt-1 text-uppercase textborder responsive-text">@{{users.username}}</p>
+                    <p class="card-text textborder responsive-text">{{users.content}}</p>
+                    {% if users.id == main_id %}
+                    <a href ="/editprofile/{{users.id}}" class="btn btn-primary float-right responsive-button" alt = "Comicsman-Profile-Edit">Edit</a>
+                    {% endif %}
+                </div>
+            </div>
+    {% else %}
+    <div class="alert alert-danger">
+        Error! User not found.
+    </div>
+    {% endif %}
+    </div>
+
+    <div class="container mt-5">
+    {% if comics %}
+    <div class="card bg-light p-4 library">
+            <h4>My Library</h4>
+            <hr>
+            <div class="row">
+            {% for comic in comics %}
+                <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
+                    <img src="{{ url_for('static', filename='yuklemeler/' + comic.imgname ) }}" alt="comicsman-comic-image" width="200px" class="card-img-left float-left mr-4 responsive-boyut">
+                    <h4 class="card-title mt-3 text-uppercase">{{comic.title}}</h4>
+                    <p class="card-text">{{comic.content}}</p>
+                    <p><img src="{{ url_for('static', filename='yuklemeler/views.png') }}" alt = "comicsman-views-icon" width = "25px" alt="Comicsman-views-icon" class = "responsive-views"><strong class = "ml-2 mt-2">{{comic.views}}</strong></p>
+                    <a href = "/comic/{{comic.id}}" class="btn btn-primary float-left responsive-button2" alt = "Comicsman-Go">Go</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+    <div class="alert alert-warning">
+        This user’s library is empty!
+    </div>
+    {% endif %}
+    {% else %}
+    {% if users %}
+            <div class="card">
+                <div class="card-body clearfix">
+                {% if dosya %}
+                <img src="{{ url_for('static', filename='yuklemeler/' + dosya ) }}" alt="comicsman-comic-image" width="180px" class="card-img-left float-left mr-4 boyut" style = "height:180px">
+                {% else %}
+                <img src="{{ url_for('static', filename='yuklemeler/profileicon.png') }}" alt="comicsman-profile-icon" width="180px" class="card-img-left img-fluid float-left mr-4 boyut" style = "height:180px">
+                {% endif %}
+                    <h4 class="card-title mt-1 text-uppercase d-inline textborder responsive-text">{{users.name}}</h4>
+                    <h4 class="card-title mt-1 text-uppercase d-inline textborder responsive-text">{{users.surname}}</h4>
+                    <a href="/report/{{users.id}}"><i class="fas fa-exclamation-triangle text-warning float-right mr-5 mt-2" data-toggle="tooltip" title="Kullanıcıyı Bildir !" data-placement="bottom"></i></a>
+                    <p class="text-muted mt-1 text-uppercase textborder responsive-text">@{{users.username}}</p>
+                    <p class="card-text textborder responsive-text">{{users.content}}</p>
+                    {% if users.id == main_id %}
+                    <a href ="/editprofile/{{users.id}}" class="btn btn-primary float-right responsive-button" alt = "Comicsman-Profile-Edit">Düzenle</a>
+                    {% endif %}
+                </div>
+            </div>
+    {% else %}
+    <div class="alert alert-danger">
+        Hata! Kullanıcı bulunamadı.
+    </div>
+    {% endif %}
+    </div>
+
+    <div class="container mt-5">
+    {% if comics %}
+    <div class="card bg-light p-4 library">
+            <h4>Kütüphanem</h4>
+            <hr>
+            <div class="row">
+            {% for comic in comics %}
+                <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
+                    <img src="{{ url_for('static', filename='yuklemeler/' + comic.imgname ) }}" alt="comicsman-comic-image" width="200px" class="card-img-left float-left mr-4 responsive-boyut">
+                    <h4 class="card-title mt-3 text-uppercase">{{comic.title}}</h4>
+                    <p class="card-text">{{comic.content}}</p>
+                    <p><img src="{{ url_for('static', filename='yuklemeler/views.png') }}" alt = "comicsman-views-icon" width = "25px" alt="Comicsman-views-icon" class = "responsive-views"><strong class = "ml-2 mt-2">{{comic.views}}</strong></p>
+                    <a href = "/comic/{{comic.id}}" class="btn btn-primary float-left responsive-button2"  alt = "Comicsman-Go">Git</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+    <div class="alert alert-warning">
+        Bu kullanıcının kütüphanesi boş!
+    </div>
+    {% endif %}
+    {% endif %}
+    </div>
+    <script>
+		$(function() {
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+    </script>
+{% endblock body %}
+

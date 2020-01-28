@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+
+<style>
+        .margin-top-form {
+            margin-top: 160px;
+        }
+        .margin-left-form{
+            margin-left:350px;
+        }
+        .formkayit{
+            width:500px;
+        }
+		.width{
+			width:550px;
+		}
+		@media screen and (max-width:574px){
+			.width{
+				width:400px;
+			}
+		}
+</style>
+
+<div class="container w-100 bg-light margin-top-form rounded pt-2" style = "max-width:500px">
+{% if session["en"] == True and session["tr"] == False %}
+<form method = "post" enctype=multipart/form-data action="/register">
+    <h3 class="iconfonts text-center">COMICS MAN</h3>
+         <hr>
+         <div class="form-group">
+             {{ render_field(form.username,class = "form-control",placeholder = "It cannot be changed again. ") }}
+		</div>
+         <div class="clearfix mt-4">
+			<div class="w-50 float-left">
+				<div class="form-group">
+				    {{ render_field(form.name,class = "form-control") }}
+				</div>
+			</div>
+			<div class="w-50 float-left pl-2">
+				<div class="form-group">
+				    {{ render_field(form.surname,class = "form-control") }}
+				</div>
+			</div>
+		</div>
+       	<div class="form-group">
+       	    {{ render_field(form.email,class = "form-control") }}
+		</div>
+
+		<div class="form-group">
+		    {{ render_field(form.password,class = "form-control") }}
+		</div>
+       <div class="form-group">
+           {{ render_field(form.confirm,class = "form-control") }}
+		</div>
+        <div class="form-group">
+			{{ render_field(form.message,class = "form-control") }}
+		</div>
+		<input type="checkbox" name = "agr_confirm">
+		<label for=""><a href="/privacy"><u>Confidentiality agreement</u></a> I have read and accept</label>
+    <button type="submit" class="btn btn-danger mb-3 form-control " value = "Gönder" alt = "Comicsman-Go">Register</button>
+</form>
+{% else %}
+<form method = "post" enctype=multipart/form-data action="/register">
+    <h3 class="iconfonts text-center">COMICS MAN</h3>
+         <hr>
+         <div class="form-group">
+             {{ render_field(form.username,class = "form-control",placeholder = "Bir Daha Değiştirilemez...") }}
+		</div>
+         <div class="clearfix mt-4">
+			<div class="w-50 float-left">
+				<div class="form-group">
+				    {{ render_field(form.name,class = "form-control") }}
+				</div>
+			</div>
+			<div class="w-50 float-left pl-2">
+				<div class="form-group">
+				    {{ render_field(form.surname,class = "form-control") }}
+				</div>
+			</div>
+		</div>
+       	<div class="form-group">
+       	    {{ render_field(form.email,class = "form-control") }}
+		</div>
+
+		<div class="form-group">
+		    {{ render_field(form.password,class = "form-control") }}
+		</div>
+       <div class="form-group">
+           {{ render_field(form.confirm,class = "form-control") }}
+		</div>
+        <div class="form-group">
+			{{ render_field(form.message,class = "form-control") }}
+		</div>
+		<input type="checkbox" name = "agr_confirm">
+		<label for=""><a href="/privacy"><u>Gizlilik Sözleşmesini</u></a> Okudum ve Kabul Ediyorum</label>
+    <button type="submit" class="btn btn-danger mb-3 mt-2 form-control " value = "Gönder" alt = "Comicsman-Register">Kayıt Ol</button>
+</form>
+{% endif %}
+</div>
+{% endblock body %}

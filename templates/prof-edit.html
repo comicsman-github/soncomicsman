@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+<style>
+        .margin-top-prof {
+            margin-top: 160px;
+        }
+        .margin-img {
+            margin-left: 35px;
+            margin-top: 20px;
+        }
+        .margin-left-form{
+            margin-left:90px;
+        }
+        .margin-left-img{
+            margin-left:10px;
+        }
+        @media screen and (max-width:500px){
+            .margin-left-form{
+                margin-left:0px;
+            }
+            .margin-top-form{
+                padding-top:10px;
+            }
+            .padding-bottom{
+                padding-bottom:20px;
+            }
+            .margin-left-img{
+                margin-left:30px;
+                width:80%;
+            }
+            .margin-left-input{
+                margin-left:30px;
+            }
+        }
+</style>
+<div class="container margin-top-prof">
+{% if session["en"] == True and session["tr"] == False %}
+<form method = "post" enctype=multipart/form-data>
+        <div class="prof-edit">
+            <div class="row margin-left-form">
+                <div class="col-lg-3 col-md-3 col-sm-12 bg-light border padding-bottom" style="max-height:290px;">
+                    <img src="{{ url_for('static', filename='yuklemeler/' + imgname_prof ) }}" class = "mt-3 mb-3 margin-left-img" alt="comicsman-profile-image" width = "190px" style = "height:190px">
+                    <input type="file" name="dosya" class = "margin-left-input">
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 bg-light border">
+                   <h3 class = "mt-2 margin-top-form">Profilini Düzenle</h3>
+                   <hr>
+                   <form method = "post">
+                    <div class="form-group">
+                        {{render_field(form.name,class = "form-control")}}
+                    </div>
+                    <div class="form-group">
+                        {{render_field(form.surname,class = "form-control")}}
+                    </div>
+                    <div class="form-group">
+                        {{render_field(form.message,class = "form-control")}}
+                    </div>
+                    <a href="/password-change/{{user_id}}"><strong>Şifre Değiştir</strong></a>
+                    <button type = "submit" class="btn btn-danger form-control margin-top-button mb-3 mt-3"  value = "Gönder" alt = "Comicsman-Go">Kaydet</button>
+                   </form>       
+                </div>
+            </div>
+        </div>
+        </form>
+{% else %}
+<form method = "post" enctype=multipart/form-data>
+        <div class="prof-edit">
+            <div class="row margin-left-form">
+                <div class="col-lg-3 col-md-3 col-sm-12 bg-light border padding-bottom" style="max-height:290px;">
+                    <img src="{{ url_for('static', filename='yuklemeler/' + imgname_prof ) }}" class = "mt-3 mb-3 margin-left-img" alt="comicsman-profile-image" width = "190px" style = "height:190px">
+                    <input type="file" name="dosya" class = "margin-left-input">
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 bg-light border">
+                   <h3 class = "mt-2 margin-top-form">Profilini Düzenle</h3>
+                   <hr>
+                   <form method = "post">
+                    <div class="form-group">
+                        {{render_field(form.name,class = "form-control")}}
+                    </div>
+                    <div class="form-group">
+                        {{render_field(form.surname,class = "form-control")}}
+                    </div>
+                    <div class="form-group">
+                        {{render_field(form.message,class = "form-control")}}
+                    </div>
+                    <a href="/password-change/{{user_id}}"><strong>Şifre Değiştir</strong></a>
+                    <button type = "submit" class="btn btn-danger form-control margin-top-button mb-3 mt-3"  value = "Gönder" alt = "Comicsman-Go">Kaydet</button>
+                   </form>       
+                </div>
+            </div>
+        </div>
+        </form>
+{% endif %}
+</div>
+{% endblock body %}

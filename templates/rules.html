@@ -1,0 +1,232 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<style>
+        body {
+            background: #E8E8E8;
+        }
+
+        .margin-top-jumbo {
+            margin-top: 175px;
+        }
+
+        .about-color {
+            background-color: #E0E0E0;
+        }
+
+        .border-div {
+            border: 1px solid black;
+        }
+
+    </style>
+<div class="jumbotron margin-top-jumbo container about-color border-div">
+{% if session["en"] == True and session["tr"] == False %}
+<h2 align=center>RULES</h2>
+        <hr>
+        <h3>Profanity Use of Slang Insult</h3>
+        <ol>
+            <li>Add to that the content of comics is prohibited indecent words. 
+            Content from indecent words in comics as soon as<u> you without being asked</u> 
+            COMICS MAN I 'shall be deleted from </li>
+                
+            <li>
+                The content of your profile is also forbidden to have inappropriate words. 
+                Contents contained inappropriate words also <u>profile your e-mail </u> message will be sent in the form of warning. If you 
+                <u>if you exceed half the number 3 and 3. </u> COMICS MAN from <u>you indefinitely banned</u>
+            </li>
+        </ol>
+        <hr>
+        <h3>The Same Line of Novel Published</h3>
+        <p>
+            If there is more than one of the same comics comics on your profile <u>without prompting you</u> as soon as I COMICS MAN 'be deleted from 
+        </p>
+        <hr>
+        <h3>Product Sales </h3>
+        <ol>
+            <li>
+                COMICS MAN'm also no sale of products can be made from sales made is <u>not responsible for COMICS MAN .</u> 
+                Sales, purchasing and so on. Comic novels, 
+                including things <u>before you are asked</u> as soon as I COMICS MAN from will be deleted. 
+            </li>
+            <li>
+                COMICS MAN'm also no sale of products can be made from sales made is <u>not responsible for COMICS MAN .</u> 
+                Sales, purchasing and so on. 
+                Guide contains <u>profiles to your email</u> message will be sent in the form of warning. 
+                If you <u>if you exceed the number of warnings 3 and 3.</u> I COMICS MAN from <u>you indefinitely banned.</u>
+            </li>
+        </ol>
+        <hr>
+        <h3>Advertising</h3>
+        <ol>
+            <li>
+                Advertising is not permitted in any of the comics you added. 
+                Advertising made comics <u>before you asked</u> as soon as I COMICS MAN 'be deleted from
+            </li>
+            <li>
+                Your profile is also no way advertising is not permitted. 
+                Advertising messages will be sent in the form of profiles made to your e-mail alerts. 
+                <u>If you if you exceed the number of warnings 3 and 3.</u> I COMICS MAN from <u>you indefinitely banned.</u>
+            </li>
+        </ol>
+        <hr>
+        <h3>Comic Publications To The Wrong Information</h3>
+        <p>
+           Add your comic with incorrect information (type, subject, cover and so on.) 
+           If you add these comics <u>you without being asked</u> will be corrected. 
+           Please add your comics with accurate information (type, subject, cover etc.) Add. 
+        </p>
+        <hr>
+        <h3>Malicious Content</h3>
+        <ol>
+            <li>
+                Add your comics malware (viruses, etc.). There are comics without you COMICS MAN 
+                I asked from my COMICS MAN will be deleted without any warning and no 'you're an indefinite ban from food.
+            </li>
+            <li>
+                 Your profile as malware (viruses, etc.). 
+                 The profiles are in the form of warning messages will be sent to your e-mail. 
+                 <u>If you if you exceed the number of warnings 3 and 3.</u> I COMICS MAN from <u>you indefinitely banned.</u>
+            </li>
+        </ol>
+        <hr>
+        <h3>Inappropriate Content</h3>
+        <ol>
+            <li>
+               Add your comics inappropriate content (profanity, violence, sexual content, inappropriate text, inappropriate images and so on.) 
+               If there are comics <u>without prompting</u> COMICS MAN'm from will be deleted. 
+            </li>
+            <li>
+                On your profile inappropriate content 
+                (profanity, violence, sexual content, inappropriate text, inappropriate images and so on.) 
+                The profiles are shaped warning message will be sent to your e-mail. 
+                If you <u>if you exceed the number of warnings 3 and 3.</u> I COMICS MAN from <u>you indefinitely banned.</u>
+            </li>
+        </ol>
+        <hr>
+        <h3>Discrimination</h3>
+        <ol>
+            <li>
+                Add to that age in the comics, race, gender, nationality, religion, sexuality and so on. 
+                If you have text involving discrimination issues comics without being asked COMICS MAN I 'be deleted from 
+            </li>
+            <li>
+                Your profile also age, race, gender, nationality, religion, sexuality and so on. 
+                If there is text on issues involving discrimination in the 
+                form of warning messages will be sent to your e-mail profile. 
+                If <u>if you exceed half the number 3 and 3.</u> I COMICS MAN from you <u>indefinitely banned.</u>
+            </li>
+        </ol>
+        <hr>
+        <p>
+            <b>If you see a comic book, report or profile of these rules go out the 
+            authorities will take care of as soon as possible. Thank you for providing us return. </b>
+        </p>
+        <hr>
+        <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/ins.png') }}" alt = "comicsman-instagram-icon" width="35px"></a>
+        <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/face.png') }}" alt = "comicsman-facebook-icon" width="35px"></a>
+        <a href="#"><img id="twitid" src="{{ url_for('static', filename='yuklemeler/twit.png') }}" alt = "comicsman-twitter-icon" width="35px"></a>
+{% else %}
+<h2 align=center>Kurallar</h2>
+        <hr>
+        <h3>Küfür Argo Hakaret Kullanımı</h3>
+        <ol>
+            <li>Eklediğiniz çizgi romanların içeriğinde uygunsuz kelimeler bulunması yasaktır. İçeriğin de
+                uygunsuz kelime bulunan çizgi romanlar en kısa zamanda <u>size sorulmadan</u> COMICS MAN’ den
+                silinecektir</li>
+            <li>
+                Profilinizin içeriğin de uygunsuz kelimeler bulunması yasaktır. İçeriğin de uygunsuz kelime
+                bulunan <u>profil e-postanıza</u> uyarı şeklinde mesaj gönderilecektir. Eğer <u>uyarı sayınız 3 ve 3 ü
+                    geçerse</u> COMICS MAN’ den <u>süresiz banlanacaksınız.</u>
+            </li>
+        </ol>
+        <hr>
+        <h3>Aynı Çizgi Romanın Yayınlanması</h3>
+        <p>
+            Profilinizde aynı çizgi romandan birden fazla var ise bu çizgi roman <u>size sorulmadan</u> en kısa zaman da
+            COMICS MAN ’den silinecektir
+        </p>
+        <hr>
+        <h3>Ürün Satışı</h3>
+        <ol>
+            <li>
+                COMICS MAN’ da hiçbir ürün satışı yapılamaz yapılan satışlardan <u>COMICS MAN sorumlu değildir</u>. Satış,
+                alım vb. şeyler içeren çizgi romanlar <u>size sorulmadan</u> en kısa zamanda COMICS MAN’ den
+                silinecektir.
+            </li>
+            <li>
+                COMICS MAN’ da hiçbir ürün satışı yapılamaz yapılan satışlardan <u>COMICS MAN sorumlu değildir</u>. Satış,
+                alım vb. Şeyler içeren <u>profil e-postanıza</u> uyarı şeklinde mesaj gönderilecektir. Eğer <u>uyarı
+                    sayınız 3 ve 3 ü geçerse</u> COMICS MAN’ dan <u>süresiz banlanacaksınız.</u>
+
+            </li>
+        </ol>
+        <hr>
+        <h3>Reklam</h3>
+        <ol>
+            <li>
+                Eklediğiniz çizgi romanların hiçbirinde reklam yapılamaz. Reklam yapılan çizgi romanlar <u>size
+                    sorulmadan</u> en kısa zamanda COMICS MAN’ den silinecektir
+            </li>
+            <li>
+                Profiliniz de hiç şekilde reklam yapılamaz. Reklam yapılan profil e-postanıza uyarı şeklinde
+                mesaj gönderilecektir. Eğer <u>uyarı sayınız 3 ve 3 ü geçerse</u> COMICS MAN’ dan <u>süresiz
+                    banlanacaksınız.</u>
+            </li>
+        </ol>
+        <hr>
+        <h3>Yanlış Bilgilerle Çizgi Roman Yayınlamak</h3>
+        <p>
+            Eklediğiniz çizgi romanı yanlış bir bilgilerle(tür, konu, kapak vb.) eklediyseniz bu çizgi roman <u>size
+                sorulmadan</u> düzeltilecek veya silinecektir. Lütfen eklediğiniz çizgi romanları doğru bilgilerle(tür, konu, kapak vb.)
+            ekleyiniz.
+
+        </p>
+        <hr>
+        <h3>Kötü Amaçlı İçerik</h3>
+        <ol>
+            <li>
+                Eklediğiniz çizgi roman da kötü amaçlı yazılımlar(virüsler vb.) var ise çizgi roman size
+                sorulmadan COMICS MAN’ dan silinecektir ve hiçbir uyarı almadan COMICS MAN’ den süresiz ban
+                yiyeceksinizdir.
+            </li>
+            <li>
+                Profiliniz de kötü amaçlı yazılımlar(virüsler vb.) var ise profil e-postanıza uyarı şeklinde mesaj
+                gönderilecektir. Eğer <u>uyarı sayınız 3 ve 3 ü geçerse</u> COMICS MAN’ dan <u>süresiz banlanacaksınız.</u>
+            </li>
+        </ol>
+        <hr>
+        <h3>Uygunsuz İçerik</h3>
+        <ol>
+            <li>
+                Eklediğiniz çizgi roman da uygunsuz içerik(küfür, şiddet, cinsel içerik, uygunsuz metin, uygunsuz görsel vb.) var ise bu çizgi roman <u>size sorulmadan</u> COMICS MAN’ dan silinecektir.
+            </li>
+            <li>
+                Profilinizde uygunsuz içerik(küfür, şiddet, cinsel içerik, uygunsuz metin, uygunsuz görsel vb.) var ise profil e-postanıza uyarı şeklinde mesaj gönderilecektir. Eğer <u>uyarı sayınız 3 ve 3 ü geçerse</u> COMICS MAN’ dan <u>süresiz banlanacaksınız.</u>
+            </li>
+        </ol>
+        <hr>
+        <h3>Ayrımcılık</h3>
+        <ol>
+            <li>
+                Eklediğiniz çizgi romanların içerisinde yaş, ırk, cinsiyet, milliyet, din, cinsellik vb. konularda
+                ayrımcılık içeren metinler var ise çizgi roman size sorulmadan COMICS MAN’ dan silinecektir
+            </li>
+            <li>
+                Profiliniz de yaş, ırk, cinsiyet, milliyet, din, cinsellik vb. konularda ayrımcılık içeren metinler
+                var ise profil e-postanıza uyarı şeklinde mesaj gönderilecektir. Eğer <u>uyarı sayınız 3 ve 3 ü
+                    geçerse</u> COMICS MAN’ dan <u>süresiz banlanacaksınız.</u>
+            </li>
+        </ol>
+        <hr>
+        <p>
+            <b>Bir çizgi romanın veya profilin bu kurallar dışına çıktığını görürseniz rapor edin yetkililer en kısa
+                zamanda ilgilenecektir. Bize geri dönüş sağladınız için teşekkür ederiz.</b>
+        </p>
+        <hr>
+        <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/ins.png') }}" width="35px"></a>
+        <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/face.png') }}" width="35px"></a>
+        <a href="#"><img id="twitid" src="{{ url_for('static', filename='yuklemeler/twit.png') }}" width="35px"></a>
+{% endif %}
+</div>
+{% endblock body %}

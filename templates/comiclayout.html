@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+{% block body %}
+<style>
+        .margin{
+            margin-top:165px;
+            margin-left:70px;
+        }
+        @media screen and (max-width:574px){
+            .img-thumbnail{
+                width:500px;
+            }
+            .margin{
+                margin-top:165px;
+                margin-left:0px;
+            }
+        }
+        .underline:hover{
+            text-decoration:underline;
+        }
+    </style>
+<div class="container">
+{% if session["en"] == True and session["tr"] == False %}
+<div class="row">
+            <div class="col-sm-12 col-md-10 col-lg-10 margin">
+            {% if comic %}
+            <div class="card bg-light clearfix">
+                   <div class="card-body">
+                       <img width = "347px" src="{{ url_for('static', filename='yuklemeler/' + dosya ) }}" alt = "comicsman-comic-image" class = "img-thumbnail float-left mr-4" style="height:517px"/>
+                       <h1 class = "card-title text-uppercase d-inline">{{comic.title}}</h1>
+                       <p class = "text-justify ">{{comic.content}}</p>
+                       <h5 class = "float-left mr-2">Brand :</h5>
+                       <p class = "text-uppercase font-weight-bold">{{comic.brand}}</p>
+                       <h5 class = "float-left mr-2">Type :</h5>
+                       <p class = "text-uppercase font-weight-bold">{{comic.type}}</p>
+                       <h5 class = "float-left mr-2">Characters :</h5>
+                       <p class = "text-uppercase font-weight-bold">{{comic.characters}}</p>
+                       <h5>Tags :</h5>
+                       <p>{{comic.tags}}</p>
+                       <a href="/addtolist/{{comic.id}}"><img src="{{ url_for('static', filename='yuklemeler/add.png') }}" alt="comicsman-add-image" width = "30px"></a>
+                       {% if crdosya %}
+                        <a href = "{{ url_for('static', filename='yuklemeler/'+ crdosya) }}" alt = "Comicsman-Comic"><button class="btn btn-primary float-right mr-4">Download</button></a> 
+                       {% endif %}
+                   </div>
+                   <div class="card-footer text-muted mt-2">
+                        <p class="text-left position-absolute ml-2 mt-2"><a href="/profile/{{comic.authorid}}" class = "text-primary underline" alt = "Comicsman-Profile">{{comic.author}}</a></p>
+                        <p class="text-right mr-2"><a href="/reportcomic/{{comic.id}}" class = "float-right mr-4 mb-2" data-toggle="tooltip" title="Report Comic" data-placement="bottom"><i class="fas fa-exclamation-triangle text-warning float-right mr-2 mt-3"></i></a></p>
+                    </div>
+               </div>
+            {% else %}
+            <div class="alert alert-danger">
+                No such comics were found.
+            </div>
+            {% endif %}
+            </div>
+        </div>
+{% else %}
+<div class="row">
+            <div class="col-sm-12 col-md-10 col-lg-10 margin">
+            {% if comic %}
+            <div class="card bg-light clearfix">
+                   <div class="card-body">
+                       <img width = "347px" src="{{ url_for('static', filename='yuklemeler/' + dosya ) }}" alt = "comicsman-comic-image" class = "img-thumbnail float-left mr-4" style="height:517px"/>
+                       <h1 class = "card-title text-uppercase d-inline">{{comic.title}}</h1>
+                        <hr>
+                       <p class = "text-justify ">{{comic.content}}</p>
+                       <h5 class = "float-left mr-2">MARKA :</h5>
+                       <p class = "text-uppercase font-weight-bold">{{comic.brand}}</p>
+                       <h5 class = "float-left mr-2">TÜR :</h5>
+                       <p class = "text-uppercase font-weight-bold">{{comic.type}}</p>
+                       <h5 class = "float-left mr-2">KAHRAMANLAR :</h5>
+                       <p class = "text-uppercase font-weight-bold">{{comic.characters}}</p>
+                       <h5>ETİKETLER :</h5>
+                       <p>{{comic.tags}}</p>
+                       <a href="/addtolist/{{comic.id}}"><img src="{{ url_for('static', filename='yuklemeler/add.png') }}" alt="comicsman-add-image" width = "30px"></a>
+                       <p class = "position-absolute" style = "right:120px;margin-top:-25px;"><img src="{{ url_for('static', filename='yuklemeler/views.png') }}" width = "25px" alt=""><strong class = "ml-2 mt-2">{{comic.views}}</strong></p>
+                       {% if crdosya %}
+                        <a href = "{{ url_for('static', filename='yuklemeler/'+ crdosya) }}"  alt = "Comicsman-Comic"><button class="btn btn-primary float-right mr-4">İndir</button></a> 
+                       {% endif %}
+                   </div>
+                   <div class="card-footer text-muted mt-2">
+                        <p class="text-left position-absolute ml-2 mt-2"><a href="/profile/{{comic.authorid}}" class = "text-primary underline" alt = "Comicsman-Profile">{{comic.author}}</a></p>
+                        <p class="text-right mr-2"><a href="/reportcomic/{{comic.id}}" class = "float-right mr-4 mb-2" data-toggle="tooltip" title="Report Comic" data-placement="bottom"><i class="fas fa-exclamation-triangle text-warning float-right mr-2 mt-3"></i></a></p>
+                    </div>
+               </div>
+            {% else %}
+            <div class="alert alert-danger">
+                Böyle bir çizgi roman bulunamadı.
+            </div>
+            {% endif %}
+            </div>
+        </div>
+{% endif %}
+    </div>
+    <script>
+		$(function() {
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+        var icon = document.getElementById('like');
+        icondurum = true;
+        icon.onclick = function(){
+            icon.setAttribute("src","{{ url_for('static', filename='yuklemeler/likecolor.png') }}");
+            icondurum = !icondurum;
+            if(icondurum == true){
+                icon.setAttribute("src","{{ url_for('static', filename='yuklemeler/like.png') }}");
+            }
+        }
+    </script>
+{% endblock body %}

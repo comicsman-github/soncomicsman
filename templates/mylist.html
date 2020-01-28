@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block body %}
+<style>
+        .margin-top-content {
+            margin-top: 165px;
+        }
+        @media screen and (max-width:574px){
+            .width{
+                width:520px;
+            }
+        }
+        .textborder{
+            max-width:300px;
+            max-height:80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+</style>  
+<div class="container margin-top-content">
+{% if session["en"] == True and session["tr"] == False %}
+        <div class="pl-4 bg-light rounded mt-top2">
+            <div class="row p-2" style="height:76px;">
+                <h3 class="ml-3 mt-3">My List</h3>
+            </div>
+        </div>
+        <div class="row mt-2">
+            {% for comic in comics %}
+            <div class="col-lg-6 col-md-12 col-sm-12 mt-3" style = "max-width:550px;">
+               <div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <img src="{{ url_for('static', filename='yuklemeler/' + comic.imgname ) }}" class="card-img-left img-thumbnail float-left mr-2" alt = "comicsman-comic-image" width="250px" style="height:350px;">
+                            <h3 class="card-title text-uppercase">{{comic.title}}</h3>
+                            <hr>
+                            <p class="card-text">
+                               {{comic.content}}
+                            </p>
+                            <p><strong>Type : </strong>{{comic.type}}</p>
+                            <a href="/deletefromlist/{{comic.id}}"><img src="{{ url_for('static', filename='yuklemeler/delete.png') }}" alt="comicsman-delete-icon" width = "30px" class = "ml-3"></a>
+                            <a href = "/comic/{{comic.comicid}}"class="btn btn-primary float-right mr-2" alt = "Comicsman-Go">Git</a>     
+                        </div>                    
+                        <div class="card-footer">
+                            <p class="text-left ml-2  mt-2 underline"><a href="/profile/{{comic.authorid}}" class = "text-primary">{{comic.author}}</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            {% endfor %}
+        </div>
+{% else %}
+<div class="pl-4 bg-light rounded mt-top2">
+            <div class="row p-2" style="height:76px;">
+                <h3 class="ml-3 mt-3">Listem</h3>
+            </div>
+        </div>
+        <div class="row mt-2">
+            {% for comic in comics %}
+            <div class="col-lg-6 col-md-12 col-sm-12 mt-3" style = "max-width:550px;">
+                <div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <img src="{{ url_for('static', filename='yuklemeler/' + comic.imgname ) }}" class="card-img-left img-thumbnail float-left mr-2" alt = "comicsman-comic-image" width="250px" style="height:350px;">
+                            <h3 class="card-title text-uppercase">{{comic.title}}</h3>
+                            <hr>
+                            <p class="card-text">
+                               {{comic.content}}
+                            </p>
+                            <p><strong>Type : </strong>{{comic.type}}</p>
+                            <a href="/deletefromlist/{{comic.id}}"><img src="{{ url_for('static', filename='yuklemeler/delete.png') }}" alt="comicsman-delete-icon" width = "30px" class = "ml-3"></a>
+                            <a href = "/comic/{{comic.comicid}}"class="btn btn-primary float-right mr-2" alt = "Comicsman-Go">Git</a>     
+                        </div>                    
+                        <div class="card-footer">
+                            <p class="text-left ml-2  mt-2 underline"><a href="/profile/{{comic.authorid}}" class = "text-primary">{{comic.author}}</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            {% endfor %}
+        </div>
+{% endif %}
+</div>
+{% endblock body %}

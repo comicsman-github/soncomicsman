@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+        .margin-top-main {
+            margin-top: 180px;
+        }
+    </style>
+<main>
+
+
+    <div class="container margin-top-main">
+    {% if session["en"] == True and session["tr"] == False %}
+    <div class = "bg-light w-100 p-3">
+    <h2 class = "text-center">Thank You</h2>
+    <p class = "mt-3 text-center">Even if you're on this page, I want to thank you. Comics Man will grow even more thanks to you.</p>
+    <hr>
+    <h4 class = "pt-3 ml-4">Before Donating</h4>
+    <ul>
+        <li>You can donate a maximum of 100 USD. If you exceed that limit, your donation will fail.</li>
+    </ul>
+    <h4 class = "pt-3 ml-4">Step By Step</h4>
+    <ul>
+        <li>Log in to your bank's mobile app or internet branch.</li>
+        <li>If you have an AKBANK account, make a transfer and enter the transfer menu via EFT if you have an account at other banks.</li>
+        <li><span class = "font-weight-bold">IBAN number field: TR 36 0004 6007 8988 8000 0693 61</span> and <span class = "font-weight-bold">Description field: 4091990557052</span> complete the process by entering the barcode number in the same way</li>
+        <li>For EFT (if you are sending from another bank other than AKBANK) <span class = "font-weight-bold">You must write <span class = "font-italic">İNİNAL ÖDEME VE ELEKTRONİK PARA HİZMETLERİ A.Ş.</span> on behalf of the buyer</li>
+    </ul>
+    <p class = "pt-3 ml-4">If you've done it all this way. Comics Man is proud of you.he loves comics.</p>
+    <p class = "pt-3 ml-4"><span class = "font-weight-bold">NOTE:</span> Most of what is written here is an excerpt from the <a class = "text-primary" href="https://www.ininal.com/sikca-sorulan-sorular-sss/">İninal SSS</a> page.</p>
+    </div>
+    {% else %}
+    <div class = "bg-light w-100 p-3">
+    <h2 class = "text-center">Teşekkür Ederim</h2>
+    <p class = "mt-3 text-center">Eğer bu sayfaya girdiysen bile sana teşekkür etmek istiyorum. Comics Man senin sayende daha da gelişecek.</p>
+    <hr>
+    <h4 class = "pt-3 ml-4">Bağış Yapmadan Önce</h4>
+    <ul>
+        <li>Maksimum 700 TL bağış yapabilirsiniz. Eğer bu limiti aşarsan bağış işlemin başarısız olacaktır.</li>
+    </ul>
+    <h4 class = "pt-3 ml-4">Adım Adım</h4>
+    <ul>
+        <li>Çalıştığın bankanın mobil uygulamasına veya internet şubesine giriş yap.</li>
+        <li>Akbank hesabın varsa havale ile, diğer bankalarda hesapların varsa EFT ile para transferi menüsüne gir.</li>
+        <li><span class = "font-weight-bold">IBAN numarası alanına: TR 36 0004 6007 8988 8000 0693 61</span> ve <span class = "font-weight-bold">Açıklama Alanına: 4091990557052</span> barkod numarasını aynı şekilde girerek işlemi tamamla.</li>
+        <li>EFT için (Akbank’tan başka bir bankadan gönderim yapıyorsan) <span class = "font-weight-bold">Alıcı ismine: <span class = "font-italic">İNİNAL ÖDEME VE ELEKTRONİK PARA HİZMETLERİ A.Ş.</span></span> yazmalısın.</li>
+    </ul>
+    <p class = "pt-3 ml-4">Eğer buraya kadar hepsini yapdıysan. Comics Man seninle gurur duyuyor çizgi roman sever.</p>
+    <p class = "pt-3 ml-4"><span class = "font-weight-bold">NOT:</span> Burada yazanların çoğu <a class = "text-primary" href="https://www.ininal.com/sikca-sorulan-sorular-sss/">İninal SSS</a> sayfasından alıntıdır.</p>
+    </div>
+    {% endif %}
+    </div>
+{% endblock body %}

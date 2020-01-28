@@ -1,0 +1,298 @@
+{% extends "layout.html" %}
+{% block body %}
+    <style>
+        body {
+            background:#E8E8E8;
+        }
+        .mt-top-button {
+            margin-top: 145px;
+
+        }
+    </style>
+   <div class="container mt-top-button">
+   {% if session["en"] == True and session["tr"] == False %}
+   <div class="row p-2 bg-light rounded">
+            <h3 class = "ml-3 mt-2">Admin Paneli</h3>
+        </div>
+        {% if session["moderators"] %}
+        <div class="row mt-5 clearfix">
+            <div class="col-lg-3 col-md-3 col-sm-12 bg-light pt-3 pl-4 mt-3 rounded">
+                <h4>Reported Users</h4>
+                <hr>
+                <ul>
+                {% if users %}
+                {% for user in users %}
+                <li><a href="#profil" alt = "Comicsman-Profile">{{user.username}}</a></li>
+                {% endfor %}
+                {% endif %}
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 bg-light ml-auto pt-3 pl-4 mt-3 rounded">
+                <h4>Comics</h4>
+                <hr>
+                <ul>
+                    {% if comics %}
+                    {% for comic in comics %}
+                    <li><a href="#comic" alt = "Comicsman-Comic">{{comic.title}}</a></li>
+                    {% endfor %}
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 bg-light ml-auto pt-3 pl-4 mt-3 rounded">
+                <h4>Social Media</h4>
+                <hr>
+                <div class = "ml-4">
+                    <script id="_wau40b">var _wau = _wau || []; _wau.push(["dynamic", "4ya4k2chr8", "40b", "000000d9d9d9", "big"]);</script><script async src="//waust.at/d.js"></script></div>
+                    <div class = "mt-2 ml-4 mb-2">
+                        <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/ins.png') }}" alt = "comicsman-instagram-icon" width="32px"></a>
+                        <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/face.png') }}" alt = "comicsman-facebook-icon" width="32px"></a>
+                        <a href="#"><img id="twitid" src="{{ url_for('static', filename='yuklemeler/twit.png') }}" alt = "comicsman-twitter-icon" width="32px"></a>
+                        <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/steam.png') }}" alt = "comicsman-steam-icon" width="32px"></a>
+                        <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/discord.png') }}" alt = "comicsman-discord-icon" width="32px"></a>
+                    </div>
+                </div>
+            </div>
+        <div class="row mt-5 bg-light">
+            <div class="col-12 pt-3 pl-4 rounded">
+                <h4>User Information</h4>
+                <form action = "/search-user" method = "post">
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" name = "keyword_user" class="form-control" placeholder="Search for Username">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                </form>
+                <div class="table-responsive">
+                 <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">E-mail</th>
+                      <th scope="col">Profile Link</th>
+                      <th scope = "col">Warning Count</th>
+                      <th scope = "col">Report Count</th>
+                      <th scope = "col" colspan = "3">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for user in users %}
+                  <tr>
+                      <th scope="row">{{user.id}}</th>
+                      <a name = "profil"><td>{{user.username}}</td></a>
+                      <td>{{user.email}}</td>
+                      <td><a href="/profile/{{user.id}}">{{user.username}}</a></td>
+                      <td>{{user.warningcount}}</td>
+                      <td>{{user.reportcount}}</td>
+                      {% if user.bansstatus == "true" %}
+                      <td><a href="/remove-user-banned/{{user.id}}" class = "btn btn-danger ml-2">Remove Ban</a></td>
+                      {% else %}
+                      <td><a href="/banned-user/{{user.id}}" class = "btn btn-danger ml-2">Ban</a></td>
+                      <td><a href="/warning-user/{{user.id}}" class = "btn btn-danger mr-3">Warn</a></td>
+                      <td><a href="/ignore-user/{{user.id}}" class = "btn btn-danger">Ignore</a></td>
+                      {% endif %}
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 bg-light">
+            <div class="col-12 pt-3 pl-4 rounded">
+                <h4>Comic Information</h4>
+                <form action = "/search-comic" method = "post">
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" name = "keyword_comic" class="form-control" placeholder="Search for Title">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                </form>
+                <div class="table-responsive">
+                 <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Comic Name</th>
+                      <th scope="col">Author</th>
+                      <th scope="col">Comic Link</th>
+                      <th scope = "col" colspan = "3">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for comic in comics %}
+                  <tr>
+                      <th scope="row">{{comic.id}}</th>
+                      <a name = "comic"><td>{{comic.title}}</td></a>
+                      <td>{{comic.author}}</td>
+                      <td><a href="/comic/{{comic.id}}">{{comic.title}}</a></td>
+                      <td><a href="/banned-comic/{{comic.id}}" class = "btn btn-danger">Remove</a></td>
+                      <td><a href="/ignore-comic/{{comic.id}}" class = "btn btn-danger">Ignore</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-danger">
+            Attention! You do not have such authority.
+        </div>
+        {% endif %}
+   {% else %}
+   <div class="row p-2 bg-light rounded">
+            <h3 class = "ml-3 mt-2">Yönetici Paneli</h3>
+        </div>
+        {% if session["moderators"] %}
+        <div class="row mt-5 clearfix">
+            <div class="col-lg-3 col-md-3 col-sm-12 bg-light pt-3 pl-4 mt-3 rounded">
+                <h4>Bildirilen Kullanıcılar</h4>
+                <hr>
+                <ul>
+                {% if users %}
+                {% for user in users %}
+                <li><a href="#profil">{{user.username}}</a></li>
+                {% endfor %}
+                {% endif %}
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 bg-light ml-auto pt-3 pl-4 mt-3 rounded">
+                <h4>Çizgi Romanlar</h4>
+                <hr>
+                <ul>
+                    {% if comics %}
+                    {% for comic in comics %}
+                    <li><a href="#comic">{{comic.title}}</a></li>
+                    {% endfor %}
+                    {% else %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 bg-light ml-auto pt-3 pl-4 mt-3 rounded">
+                <h4>Sosyal Medya</h4>
+                <hr>
+                <div class = "ml-4">
+                </div>
+                    <div class = "mt-2 ml-4 mb-2">
+                    <script id="_wau40b">var _wau = _wau || []; _wau.push(["dynamic", "4ya4k2chr8", "40b", "000000d9d9d9", "big"]);</script><script async src="//waust.at/d.js"></script></div>
+                        <a href="#"><img id="faceid" class = "ml-4" src="{{ url_for('static', filename='yuklemeler/ins.png') }}" alt = "comicsman-instagram-icon" width="32px"></a>
+                        <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/face.png') }}" alt = "comicsman-facebook-icon" width="32px"></a>
+                        <a href="#"><img id="twitid" src="{{ url_for('static', filename='yuklemeler/twit.png') }}" alt = "comicsman-twitter-icon" width="32px"></a>
+                        <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/steam.png') }}" alt = "comicsman-steam-icon" width="32px"></a>
+                        <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/discord.png') }}" alt = "comicsman-discord-icon" width="32px"></a>
+                    </div>
+                </div>
+            </div>
+        <div class="row mt-5 bg-light">
+            <div class="col-12 pt-3 pl-4 rounded">
+                <h4>Kullanıcı Bilgileri</h4>
+                <form action = "/search-user" method = "post">
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" name = "keyword_user" class="form-control" placeholder="Search for Username">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                </form>
+                <div class="table-responsive">
+                 <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Kullanıcı Adı</th>
+                      <th scope="col">E-posta</th>
+                      <th scope="col">Profil Bağlantısı</th>
+                      <th scope = "col">Uyarı Sayısı</th>
+                      <th scope = "col">Raporlanma Sayısı</th>
+                      <th scope = "col" colspan = "3">Durum</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for user in users %}
+                  <tr>
+                      <th scope="row">{{user.id}}</th>
+                      <a name = "profil"><td>{{user.username}}</td></a>
+                      <td>{{user.email}}</td>
+                      <td><a href="/profile/{{user.id}}">{{user.username}}</a></td>
+                      <td>{{user.warningcount}}</td>
+                      <td>{{user.reportcount}}</td>
+                      {% if user.bansstatus == "true" %}
+                      <td><a href="/remove-user-banned/{{user.id}}" class = "btn btn-danger ml-2">Banı Kaldır</a></td>
+                      {% else %}
+                      <td><a href="/banned-user/{{user.id}}" class = "btn btn-danger ml-2">Banla</a></td>
+                      <td><a href="/warning-user/{{user.id}}" class = "btn btn-danger mr-3">Uyarı</a></td>
+                      <td><a href="/ignore-user/{{user.id}}" class = "btn btn-danger">Yoksay</a></td>
+                      {% endif %}
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 bg-light">
+            <div class="col-12 pt-3 pl-4 rounded">
+                <h4>Çizgi Roman Bilgileri</h4>
+                <form action = "/search-comic" method = "post">
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" name = "keyword_comic" class="form-control" placeholder="Search for Title">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                </form>
+                <div class="table-responsive">
+                 <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Çizgi Roman Adı</th>
+                      <th scope="col">Yazar</th>
+                      <th scope="col">Çizgi Roman Bağlantısı</th>
+                      <th scope = "col" colspan = "3">Durum</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for comic in comics %}
+                  <tr>
+                      <th scope="row">{{comic.id}}</th>
+                      <a name = "comic"><td>{{comic.title}}</td></a>
+                      <td><a href="/comic/{{comic.authorid}}">{{comic.author}}</a></td>
+                      <td><a href="/comic/{{comic.id}}">{{comic.title}}</a></td>
+                      <td><a href="/banned-comic/{{comic.id}}" class = "btn btn-danger">Sil</a></td>
+                      <td><a href="/ignore-comic/{{comic.id}}" class = "btn btn-danger">Yoksay</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-danger">
+            Dikkat! Böyle bir yetkiye sahip değilsiniz.
+        </div>
+        {% endif %}
+   {% endif %}
+    </div>
+{% endblock body %}

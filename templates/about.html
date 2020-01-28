@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<style>
+        body {
+            background: #E8E8E8;
+        }
+
+        .margin-top-jumbo {
+            margin-top: 175px;
+        }
+
+        .about-color {
+            background-color: #E0E0E0;
+        }
+        .border-div{
+            border:1px solid black;
+        }
+    </style>
+    {% if session["en"] == True and session["tr"] == False %}
+    <div class="jumbotron margin-top-jumbo container about-color border-div">
+        <h2 align=center>ABOUT US</h2>
+        <hr>
+        <h3>Establishment Purpose</h3>
+            <p>
+                COMICS MAN it was founded in the year September 12, 2019 by Berkay Kaya. 
+                COMICS MAN! 'S organizational goals specific to the love of comic books, 
+                with content and systems to gather them together was established with the idea of the 
+                elimination of a lack of social media. 
+            </p>
+        <hr>
+        <h3>Content</h3>
+            <p>
+                COMICS MAN you then had what distinguishes from others?<br>
+                Users may want to share the comic book or graphic novel shared by the other user can download or add to their list. Each user has their own profile can customize as they wish. 
+                It exhibited at the library located under the user profile of the comic book insert. 
+                COMICS MAN is a site that I never wear. 
+                Search is user friendly with modern and simple face and was always up to date
+            </p>
+        <hr>
+        <h3>Who is COMICS MAN?</h3>
+            <p>
+                COMICS MAN my name comics or comic MAN also called ADAM. Well, that's where the name came from? <br>
+                COMICS MAN, helping to like comic book superheroes are very loving. 
+                COMICS MAN 'S goal of finding the comic in comic book 
+                lovers that want a very easy way and allows the user's favorite comic book 
+                lovers to share with other comic
+            </p>
+        <hr>
+        <p>E-Mail of COMICS MAN Founder: bberkaykaya0@gmail.com</p>
+        <hr>
+        <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/ins.png') }}" alt = "comicsman-instagram-icon" width="35px"></a>
+        <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/face.png') }}" alt = "comicsman-facebook-icon" width="35px"></a>
+        <a href="#"><img id="twitid" src="{{ url_for('static', filename='yuklemeler/twit.png') }}" alt = "comicsman-twitter-icon" width="35px"></a>
+    </div>
+    {% else %}
+<div class="jumbotron margin-top-jumbo container about-color border-div">
+        <h2 align=center>Hakkımızda</h2>
+        <hr>
+        <h3>Kuruluş Amacı</h3>
+        <p>COMICS MAN, 12 Eylül 2019 yılında Berkay Kaya tarafından kurulmuştur. COMICS MAN’ in kuruluş amacı çizgi
+            roman severlere özgü, onları bir araya toplayabilecek içeriğe ve sisteme sahip bir sosyal medya
+            eksikliğinin giderilmesi fikriyle kurulmuştur.
+        </p>
+        <hr>
+        <h3>İçerik</h3>
+        <p>
+            COMICS MAN’ i diğerlerinden ayıran neler var?<br>
+            Kullanıcılar, istediği çizgi romanı paylaşabilir veya başka
+            kullanıcıların paylaştığı çizgi romanı indirebilir veya kendi listelerine ekleyebilirler.
+            Her kullanıcının kendine ait istediği gibi kişiselleştirebileceği profili vardır. Kullanıcıların eklediği çizgi
+            roman profilin altında bulunan kütüphanede sergilenir. COMICS MAN asla eskimeyen bir sitedir.
+            Modern ve basit ara yüzü ile kullanıcı dostudur ve hep güncel olmuştur.
+        </p>
+        <hr>
+        <h3>COMICS MAN' da Kim ?</h3>
+        <p>
+            COMICS MAN ismi ÇİZGİ ROMAN ADAM veya COMİC MAN olarak da anılabilir. Peki, bu isim nerden çıktı?<br>
+            COMICS MAN, çizgi roman severlere yardım etmeyi çok seven bir süper kahramandır. COMICS MAN’ in amacı
+            çizgi roman severleri istediği çizgi romanları çok kolay bir şekilde bulmasını ve kullanıcının sevdiği çizgi romanı
+            başka çizgi roman severlerle paylaşmasını sağlar.
+        </p>
+        <hr>
+        <p>Berkay Kaya ile iletişime geçmek için <span style = "font-weight:bold">bberkaykaya0@gmail.com</span></p>
+        <hr>
+        <a href="#"><img id="insid" src="{{ url_for('static', filename='yuklemeler/ins.png') }}" alt = "comicsman-instagram-icon" width="35px"></a>
+        <a href="#"><img id="faceid" src="{{ url_for('static', filename='yuklemeler/face.png') }}" alt = "comicsman-facebook-icon" width="35px"></a>
+        <a href="#"><img id="twitid" src="{{ url_for('static', filename='yuklemeler/twit.png') }}" alt = "comicsman-twitter-icon" width="35px"></a>
+    </div>
+    {% endif %}
+
+{% endblock body %}

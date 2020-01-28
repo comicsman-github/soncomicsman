@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+<style>
+        /* Kontrol Paneli */
+        .margin-top-kont {
+            margin-top: 150px;
+        }
+        .margin-l{
+            margin-left:70px;
+        }
+        .width{
+			width:950px;
+		}
+		@media screen and (max-width:574px){
+			.width{
+				width:470px;
+			}
+            .margin-l{
+                margin-left:0px;
+            }
+		}
+</style>
+<div class="container">
+        <div class="p-3 bg-light width margin-top-kont margin-l rounded">
+            {% if session["en"] == True and session["tr"] == False %}
+            <form method = "post" enctype=multipart/form-data action="/addcomic">
+            <button type="submit" class="btn btn-danger mb-5 " value = "Gönder" alt = "Comicsman-AddComic">Add to My Library</button>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <h3 class="mb-3">General Information</h3>
+                    <hr>
+                    
+                    <div class="form-group">
+                       {{ render_field(form.title,class = "form-control mb-3") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(form.crtype,class ="form-control") }}
+                    </div>
+                    <div class="form-group">
+                       {{ render_field(form.brand,class ="form-control") }}
+                    </div>
+                    <div class="form-group">
+                       {{ render_field(form.characters,class ="form-control mb-3") }}
+                    </div>
+                    <div class="form-group">
+                       {{ render_field(form.content,class ="form-control") }}
+                    </div>
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <h3 class="mb-3">Add Comic Cover</h3>
+                        <hr>
+                        <input type="file" name="dosya">
+                        {% if dosya %}
+                        <img alt = "Resim Yüklenmiştir." src="{{ url_for('static', filename='yuklemeler/'+ dosya) }}" alt = "comicsman-comic-image" width = "347px" style = "height:517px"/>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        {{ render_field(form.tags,class ="form-control") }}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <h4 class = "mb-4" >Add Comic Book</h4>
+                        <hr>
+                        <p class = "font-weight-bold">If you upload the comics by number, it will be faster, otherwise your process may take time.</p>
+                        <input type="file" name="crdosya">
+                        {% if crdosya %}
+                        <a href="{{ url_for('static', filename='yuklemeler/'+ crdosya) }}" alt = "comicsman-comic-book" class = "btn btn-primary">İndir</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div> 
+            </form> 
+            {% else %}
+            <form method = "post" enctype=multipart/form-data action="/addcomic">
+            <button type="submit" class="btn btn-danger mb-5 " value = "Gönder" alt = "Comicsman-AdminPanel-Login">Kütüphaneme Ekle</button>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <h3 class="mb-3">Genel Bilgiler</h3>
+                    <hr>
+                    
+                    <div class="form-group">
+                       {{ render_field(form.title,class = "form-control mb-3") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(form.crtype,class ="form-control") }}
+                    </div>
+                    <div class="form-group">
+                       {{ render_field(form.brand,class ="form-control") }}
+                    </div>
+                    <div class="form-group">
+                       {{ render_field(form.characters,class ="form-control mb-3") }}
+                    </div>
+                    <div class="form-group">
+                       {{ render_field(form.content,class ="form-control") }}
+                    </div>
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <h3 class="mb-3">Kapak Ekleyin</h3>
+                        <hr>
+                        <input type="file" name="dosya">
+                        {% if dosya %}
+                        <img alt = "Resim Yüklenmiştir." src="{{ url_for('static', filename='yuklemeler/'+ dosya) }}" alt = "comicsman-comic-image" width = "347px" style = "height:517px"/>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        {{ render_field(form.tags,class ="form-control") }}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <h4 class = "mb-4" >Çizgi Romanı Ekleyin</h4>
+                        <hr>
+                        <p class = "font-weight-bold">Eğer çizgi romanları sayılarına ayırarak yüklerseniz daha hızlı olur aksi halde işleminiz zaman alabilir.</p>
+                        <input type="file" name="crdosya">
+                        {% if crdosya %}
+                        <a href="{{ url_for('static', filename='yuklemeler/'+ crdosya) }}" alt = "comicsman-comic-book" class = "btn btn-primary">İndir</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div> 
+            </form> 
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock body %}
